@@ -22,6 +22,8 @@ urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^$', UserModel_SelectAll, name='SelectAll'),
     url(r'^api/insert$', UserModel_Insert, name='Users_Insert'),
+    url(r'^api/delete/(?P<pk>[0-9]+)$', UserModel_Delete, name='Users_Delete'),
+    url(r'^api/update/(?P<pk>[0-9]+)$', UserMOdel_Update, name='Users_Delete'),
 
 
 

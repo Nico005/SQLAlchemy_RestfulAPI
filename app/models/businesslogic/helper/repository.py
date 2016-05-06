@@ -84,7 +84,7 @@ class Repository():
             try:
                    Session = sessionmaker(bind=connect.ConnectorMySql())
                    ses = Session()
-                   our_model =  ses.query(pModel).filter_by(id=pID).first()
+                   our_model =  ses.query(pModel).filter_by(ID=pID).first()
                    ses.delete(our_model)
                    ses.commit()
                    ses.close()
