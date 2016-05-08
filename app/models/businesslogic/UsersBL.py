@@ -25,5 +25,12 @@ class UserBL():
         rep = Repository()
         return rep.Delete(Users,pID)
 
+    def Find_Users(self,pID):
+        rep = Repository()
+        return rep.Find(Users,pID)
+
+    def FindUsername(self,username):
+        rep = Repository()
+        return rep.Search_Username(Users,username)
 
 

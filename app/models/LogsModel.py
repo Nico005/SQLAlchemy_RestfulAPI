@@ -13,8 +13,8 @@ class Logs(UserBase):
 
         ID = Column(Integer, primary_key=True,autoincrement=True)
         UserLog = Column(String(50))
-        log_id = Column(Integer, ForeignKey('users.ID'))
-        log = relationship("Users",lazy="joined", backref=backref('logs'))
+        user_id = Column(Integer, ForeignKey('users.ID'))
+        user = relationship("Users",lazy="joined", backref=backref('logs'))
 
 
 

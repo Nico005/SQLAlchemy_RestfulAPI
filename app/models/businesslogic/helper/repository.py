@@ -123,6 +123,31 @@ class Repository():
             except Exception as e:
                    raise Exception('Type Error In SelectOne :'+ str(e))
 
+        def Find(self,pModel,pID):
+
+            try:
+                   Session = sessionmaker(bind=connect.ConnectorMySql())
+                   ses = Session()
+                   lst =  ses.query(pModel).filter_by(ID=pID)
+                   return lst.all()
+
+            except Exception as e:
+
+                    raise Exception('Type Error In Find :'+ str(e))
+
+        def Search_Username(self,pModel,pUsername):
+
+            try:
+                   Session = sessionmaker(bind=connect.ConnectorMySql())
+                   ses = Session()
+                   lst =  ses.query(pModel).filter(pModel.Username.like(pUsername+'%'))
+                   return lst.all()
+
+            except Exception as e:
+
+                    raise Exception('Type Error In Find :'+ str(e))
+
+
         def SelectOne_InTransaction(self, pModel, pID, session):
             try:
                    our_model =  session.query(pModel).filter_by(id=pID).first()

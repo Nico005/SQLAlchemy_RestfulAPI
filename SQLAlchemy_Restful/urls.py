@@ -24,7 +24,8 @@ urlpatterns = [
     url(r'^api/insert$', UserModel_Insert, name='Users_Insert'),
     url(r'^api/delete/(?P<pk>[0-9]+)$', UserModel_Delete, name='Users_Delete'),
     url(r'^api/update/(?P<pk>[0-9]+)$', UserMOdel_Update, name='Users_Delete'),
-
+    url(r'^api/search/(?P<pk>[0-9]+)$', UserModel_Search, name='Users_Search'),
+    url(r'^api/username/(?P<username>\w+)$', UserModel_SearchUsername , name='User_Username'),
 
 
 ]
