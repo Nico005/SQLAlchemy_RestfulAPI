@@ -9,7 +9,7 @@ install packages of requirements.txt
 ```
 
 
-### SETTINGS (DATABASE CONFIG)
+### 1) SETTINGS (DATABASE CONFIG)
 Configuration connection to database MySQL or etc 
 
 [ Configuration Code](https://github.com/RaminFP/SQLAlchemy_RestfulAPI/blob/master/config/database/dbconfig.py) 
@@ -28,7 +28,7 @@ class MySQLInfo:
 if you need mapping tables with SQLAlchemy you should set `CONNECTOR=True` if mapping is done with SQLAlchemy set `False` 
  
  
-### APP (Controllers,APIs,MODELS)
+### 2) APP (Controllers,APIs,MODELS)
 
 ##### Controllers (Render Files(HTML,JS,IMAGE , ...)) :
 
@@ -87,7 +87,7 @@ curl -X GET http://127.0.0.1:8000/api/username/test
 
 
 
-### SERIALIZER (Serializer Models SQLAlchemy )
+### 3) SERIALIZER (Serializer Models SQLAlchemy )
 
 [ Serializer Model API Service ](https://github.com/RaminFP/SQLAlchemy_RestfulAPI/tree/master/serialization) 
 
