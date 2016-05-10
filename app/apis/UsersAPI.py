@@ -3,7 +3,7 @@ from app.models.UsersModel import Users
 from app.models.LogsModel import Logs
 from app.models.businesslogic.UsersBL import UserBL
 from app.models.businesslogic.LogsBL import LogsBL
-from django.shortcuts import HttpResponse
+from django.http import JsonResponse
 from serialization.UsersSerializer import UsersSchema
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -17,15 +17,18 @@ def UserModel_SelectAll(request):
 
     try:
 
-        if request.method == 'GET':
-            usermodel_object = UserBL().SelectAll_Users()
-            if usermodel_object:
-                users_schema = UsersSchema(many=True)
-                if users_schema:
-                    to_json = users_schema.dump(usermodel_object,many=True).data
-                    return Response(to_json,status=status.HTTP_201_CREATED)
-            return Response(json.dumps({'status':'Try Again'}))
-        return HttpResponse(json.dumps({'status':'Invalid Request Method'}))
+            if request.method == 'GET':
+                if request.user.is_authenticated():
+                    usermodel_object = UserBL().SelectAll_Users()
+                    if usermodel_object:
+                        users_schema = UsersSchema(many=True)
+                        if users_schema:
+                            to_json = users_schema.dump(usermodel_object,many=True).data
+                            return Response(to_json,status=status.HTTP_201_CREATED)
+                    return Response(json.dumps({'status':'Try Again'}))
+
+                return Response(json.dumps({'status':'Invalid authenticated'}))
+            return Response(json.dumps({'status':'Invalid Request Method'}))
 
     except Exception as e:
         return Response(json.dumps({'status':e}))
@@ -48,7 +51,7 @@ def UserModel_Insert(request):
                         return Response(json.dumps({'status':'True'}))
                 return Response(json.dumps({'status':'Error in Insert Model'}))
 
-        return HttpResponse(json.dumps({'status':'Invalid Request Method'}))
+        return JsonResponse({'status':'Invalid Request Method'})
 
     except Exception as e:
         return Response(json.dumps({'status':e}))
@@ -64,7 +67,7 @@ def UserModel_Delete(request,pk):
                     return Response(json.dumps({'status':'True'}))
 
             return Response(json.dumps({'status':'Not Found Account'}))
-        return HttpResponse(json.dumps({'status':'Invalid Request Method'}))
+        return JsonResponse({'status':'Invalid Request Method'})
 
     except Exception as e:
        return Response(json.dumps({'status':e}))

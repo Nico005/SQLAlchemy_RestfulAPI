@@ -14,12 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from app.apis.UsersController import *
-
+from app.apis.UsersAPI import *
+from app.apis.HomeAPI import *
+from django.contrib import admin
+admin.autodiscover()
 
 
 urlpatterns = [
-    # url(r'^admin/', admin.site.urls),
+
+    url(r'^admin/', admin.site.urls),
+
+    #======== User Controller
+
     url(r'^$', UserModel_SelectAll, name='SelectAll'),
     url(r'^api/insert$', UserModel_Insert, name='Users_Insert'),
     url(r'^api/delete/(?P<pk>[0-9]+)$', UserModel_Delete, name='Users_Delete'),
@@ -27,5 +33,8 @@ urlpatterns = [
     url(r'^api/search/(?P<pk>[0-9]+)$', UserModel_Search, name='Users_Search'),
     url(r'^api/username/(?P<username>\w+)$', UserModel_SearchUsername , name='User_Username'),
 
+    #======== Home Controller
+
+    url(r'^api/login$', SignIn, name='Users_Signin'),
 
 ]
