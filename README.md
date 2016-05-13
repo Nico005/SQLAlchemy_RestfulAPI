@@ -22,7 +22,7 @@ class MySQLInfo:
     USERNAME   = 'root'              # Username DB
     PASSWORD   = ''                  # Password 
     DBNAME     = 'restful'           # DB Name (Here example restful)   
-    PORT       = '3306'              # Defualt post MySQL    
+    PORT       = '3306'              # Defualt port MySQL    
 ```
  
 if you need mapping tables with SQLAlchemy you should set `CONNECTOR=True` if mapping is done with SQLAlchemy set `False` 

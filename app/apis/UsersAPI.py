@@ -63,10 +63,12 @@ def UserModel_Delete(request,pk):
 
         if request.method == 'DELETE':
             usermodel_object = UserBL().Delete_Users(pk)
+
             if usermodel_object:
                     return Response(json.dumps({'status':'True'}))
 
             return Response(json.dumps({'status':'Not Found Account'}))
+
         return JsonResponse({'status':'Invalid Request Method'})
 
     except Exception as e:
@@ -136,6 +138,7 @@ def UserModel_SearchUsername(request,username):
                     return Response(to_json,status=status.HTTP_201_CREATED)
 
             return Response(json.dumps({'status':'Not Found Account'}))
+
         return Response(json.dumps({'status':'Invalid Request Method'}))
 
     except Exception as e:
