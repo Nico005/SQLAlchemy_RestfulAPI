@@ -172,3 +172,17 @@ class Repository():
                 trans.rollback()
                 raise
 
+        def SP(self):
+
+            try:
+                from sqlalchemy.orm import create_session
+                session = create_session()
+                connection = connect.ConnectorMySql().raw_connection()
+                cursor = connection.cursor()
+                cursor.callproc("GetReportersOfSite", [None,None])
+                results = list(cursor.fetchall())
+                cursor.close()
+                connection.commit()
+
+            except Exception as e:
+                raise Exception('Type Error In SP :'+ str(e))
